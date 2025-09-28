@@ -1,43 +1,49 @@
+# Demonstration Azure Pipeline covering build and deploy stages for sample .NET app.
+# Comments outline what each section does so it is easier to customize later.
 trigger:
-      branches:
-        include:
-          - main
-          - feature/*
+  branches:
+    include:
+      - main
+      - feature/*
 
+# Default agent image for jobs unless overridden at the job level.
+pool:
+  vmImage: ubuntu-latest
 
-    pool:
-      vmImage: 'ubuntu-latest' # or 'windows-latest'
+# Build-wide configuration values reused across steps.
+variables:
+  buildConfiguration: Release
 
-
-          stages:
-    - stage: Build
-      displayName: 'Build the application'
-      jobs:
-      - job: BuildJob
-        displayName: 'Build Job'
+stages:
+  - stage: Build
+    displayName: Build the application
+    jobs:
+      - job: BuildLinux
+        displayName: Build on Ubuntu
         steps:
-        - script: echo "Building..."
+          - script: echo "Building..."
+            displayName: Placeholder build command
+          - task: UseDotNet@2
+            displayName: Install .NET SDK 8.x
+            inputs:
+              packageType: 'sdk'
+              version: '8.x'
+          - script: dotnet build --configuration $(buildConfiguration)
+            displayName: Build solution
+      - job: BuildWindows
+        displayName: My Custom Job
+        pool:
+          vmImage: windows-latest
+        steps:
+          - script: echo "Custom Windows job placeholder"
+            displayName: Placeholder Windows step
 
-    - stage: Deploy
-      displayName: 'Deploy the application'
-      jobs:
+  - stage: Deploy
+    displayName: Deploy the application
+    dependsOn: Build
+    jobs:
       - job: DeployJob
-        displayName: 'Deployment Job'
+        displayName: Deployment Job
         steps:
-        - script: echo "Deploying..."
-
-            jobs:
-    - job: MyJob
-      displayName: 'My Custom Job'
-      pool:
-        vmImage: 'windows-latest'
-      steps:
-      # ... steps for this job
-
-          steps:
-    - task: UseDotNet@2
-      inputs:
-        packageType: 'sdk'
-        version: '8.x'
-    - script: dotnet build --configuration Release
-      displayName: 'Build Solution'
+          - script: echo "Deploying..."
+            displayName: Placeholder deploy command
