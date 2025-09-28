@@ -5,7 +5,7 @@ Sample repository demonstrating a minimal Azure DevOps pipeline that builds and 
 ## Pipeline overview
 - Triggered on pushes to `main` and any `feature/*` branch.
 - Uses `ubuntu-latest` as the default agent image with a Windows job override when needed.
-- Build stage installs .NET 8 SDK, performs a placeholder build, and runs an example Windows job.
+- Build stage installs .NET 8 SDK, then builds if a `.sln` or `.csproj` is present (otherwise it skips with a message).
 - Deploy stage currently echoes a placeholder command so you can wire in real deployment logic.
 
 ## Getting started
