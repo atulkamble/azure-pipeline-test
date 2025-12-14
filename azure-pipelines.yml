@@ -1,14 +1,13 @@
 trigger:
-  - main  
+  - main
 
 pool:
-  vmImage: 'ubuntu-latest'  
+  vmImage: 'ubuntu-latest'
 
 jobs:
-  -job: Build
-   variables:
-   envName: 'Development'
-
-steps:
-  - script: |
-            echo $(envName))
+  - job: Build
+    variables:
+      envName: 'Development'
+    steps:
+      - script: |
+          echo $(envName)
