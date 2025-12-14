@@ -7,10 +7,11 @@ pool:
 variables:
   appName: 'MyApp'
   envName: 'Development'
+  message: 'Welcome to Azure Pipeline'
 
 steps:
-  - script: echo "Hello from Azure Pipeline"
-    displayName: 'Printing a message'
+  - script: echo $(message)
+            echo $(message)
 
   - script: |
       echo "Application Name: $(appName)"
