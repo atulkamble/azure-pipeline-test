@@ -18,4 +18,7 @@ jobs:
         displayName: 'Display New Stage Name'
 
       - script: echo $(country)
-        script: echo "Group Variable Printed"
+        displayName: 'Display Country Variable'
+
+      - script: echo "Group Variable Printed"
+        displayName: 'Display Group Variable Message'
