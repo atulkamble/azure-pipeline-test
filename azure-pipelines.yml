@@ -6,9 +6,8 @@ pool:
 
 jobs:
   -job: Build
-
-variables:
-  envName: 'Development'
+  variables:
+   envName: 'Development'
 
 steps:
   - script: |
