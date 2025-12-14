@@ -4,8 +4,15 @@ trigger:
 pool:
   vmImage: 'ubuntu-latest'  
 
+variables:
+  appName: 'MyApp'
+  envName: 'Development'
+
 steps:
   - script: echo "Hello from Azure Pipeline"
     displayName: 'Printing a message'
 
-    
+  - script: |
+      echo "Application Name: $(appName)"
+      echo "Environment Name: $(envName)"
+
