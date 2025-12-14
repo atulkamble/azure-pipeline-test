@@ -1,54 +1,11 @@
-# Demonstration Azure Pipeline covering build and deploy stages for sample .NET app.
-# Comments outline what each section does so it is easier to customize later.
 trigger:
-  branches:
-    include:
-      - main
-      - feature/*
+  - main  
 
-# Default agent image for jobs unless overridden at the job level.
 pool:
-  vmImage: ubuntu-latest
+  vmImage: 'ubuntu-latest'  
 
-# Build-wide configuration values reused across steps.
-variables:
-  buildConfiguration: Release
+steps:
+  - script: echo "Hello from Azure Pipeline"
+    displayName: 'Printing a message'
 
-stages:
-  - stage: Build
-    displayName: Build the application
-    jobs:
-      - job: BuildLinux
-        displayName: Build on Ubuntu
-        steps:
-          - script: echo "Building..."
-            displayName: Placeholder build command
-          - task: UseDotNet@2
-            displayName: Install .NET SDK 8.x
-            inputs:
-              packageType: 'sdk'
-              version: '8.x'
-          - script: |
-              if ls *.sln 1>/dev/null 2>&1 || ls *.csproj 1>/dev/null 2>&1; then
-                dotnet build --configuration $(buildConfiguration)
-              else
-                echo "No .NET solution or project detected in $(System.DefaultWorkingDirectory); skipping build."
-              fi
-            displayName: Build solution when present
-      - job: BuildWindows
-        displayName: My Custom Job
-        pool:
-          vmImage: windows-latest
-        steps:
-          - script: echo "Custom Windows job placeholder"
-            displayName: Placeholder Windows step
-
-  - stage: Deploy
-    displayName: Deploy the application
-    dependsOn: Build
-    jobs:
-      - job: DeployJob
-        displayName: Deployment Job
-        steps:
-          - script: echo "Deploying..."
-            displayName: Placeholder deploy command
+    
