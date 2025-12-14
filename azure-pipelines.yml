@@ -10,7 +10,8 @@ variables:
   message: 'Welcome to Azure Pipeline'
 
 steps:
-  - script: echo $(message)
+  - script: |
+            echo $(message)
             echo $(message)
 
   - script: |
