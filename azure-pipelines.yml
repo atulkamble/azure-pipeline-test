@@ -17,3 +17,6 @@ jobs:
       - script: echo $(newstage)
         displayName: 'Display New Stage Name'
 
+      - script: echo $(country)
+
+
