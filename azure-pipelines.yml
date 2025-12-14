@@ -4,17 +4,12 @@ trigger:
 pool:
   vmImage: 'ubuntu-latest'  
 
+jobs:
+  -job: Build
+
 variables:
-  appName: 'MyApp'
   envName: 'Development'
-  message: 'Welcome to Azure Pipeline'
 
 steps:
   - script: |
-            echo $(message)
-            echo $(message)
-
-  - script: |
-      echo "Application Name: $(appName)"
-      echo "Environment Name: $(envName)"
-
+            echo $(envName))
