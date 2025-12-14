@@ -4,10 +4,13 @@ trigger:
 pool:
   vmImage: 'ubuntu-latest'
 
+variables:
+  stagename: 'Build'
+
 jobs:
-  - job: Build
-    variables:
-      envName: 'Development'
+  -job: BuildJob
     steps:
-      - script: |
-          echo $(envName)
+      -script: echo ($stagename)
+        displayName: 'Display Stage Name'
+
+        
