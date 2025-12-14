@@ -6,10 +6,14 @@ pool:
 
 variables:
   stagename: 'Build'
+  newstage: 'Release'
 
 jobs:
   - job: BuildJob
     steps:
       - script: echo $(stagename)
         displayName: 'Display Stage Name'
+
+      - script: echo $(newstage)
+        displayName: 'Display New Stage Name'
 
