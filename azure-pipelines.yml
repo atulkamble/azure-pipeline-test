@@ -8,9 +8,8 @@ variables:
   stagename: 'Build'
 
 jobs:
-  -job: BuildJob
+  - job: BuildJob
     steps:
-      -script: echo ($stagename)
+      - script: echo $(stagename)
         displayName: 'Display Stage Name'
 
-        
